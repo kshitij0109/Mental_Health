@@ -1,0 +1,164 @@
+/* Crisis & Resources Page - crisis-resources.css */
+
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: "times new roman";
+    background-color: #ffe6f2; /* Light pink background */
+}
+
+/* Header Styling */
+header {
+    padding: 20px 0;
+}
+
+header .logo {
+    font-size: 24px;
+    color:#ff4080;
+    font-weight: bold;
+    padding-inline-start: 100px;
+}
+
+header ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+}
+
+header ul li {
+    margin: 0 15px;
+}
+
+header ul li a {
+    text-decoration: none;
+    color:#ff4080;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+header ul li a:hover {
+    color: #ffccdd; /* Lighter pink on hover */
+}
+
+/* Content Section */
+.content-section {
+    padding: 60px 20px;
+    background-color: pastelpink;
+}
+
+.content-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.content-header h1 {
+    font-size: 36px;
+    color: #ff4080; /* Darker pink for heading */
+    animation: slideDown 1s ease;
+}
+
+.content-header p {
+    font-size: 18px;
+    color: black;
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.content-card {
+    background-color:#ffccdd; /* Light pink background for cards */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.content-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.content-card h3 {
+    font-size: 24px;
+    color: #ff4080; /* Darker pink for card titles */
+    margin-bottom: 10px;
+}
+
+.content-card p {
+    font-size: 16px;
+    color: black;
+}
+
+/* Footer Styling */
+footer {
+    color:#ff4080;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 70px;
+}
+
+footer p {
+    margin: 0;
+    font-size: 14px;
+}
+
+footer ul.socials {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0;
+    display: flex;
+    justify-content: center;
+}
+
+footer ul.socials li {
+    margin: 0 10px;
+}
+
+footer ul.socials a {
+    color:#ff4080;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+footer ul.socials a:hover {
+    color: #ffccdd; /* Lighter pink on hover */
+}
+
+/* Animations */
+@keyframes slideDown {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .content-header h1 {
+        font-size: 28px;
+    }
+
+    .content-header p {
+        font-size: 16px;
+    }
+
+    .content-card h3 {
+        font-size: 20px;
+    }
+
+    .content-card p {
+        font-size: 14px;
+    }
+}
+

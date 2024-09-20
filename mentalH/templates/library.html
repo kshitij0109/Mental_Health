@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health Platform</title>
+    {% comment %} <link rel="stylesheet" href="static/css/library.css"> {% endcomment %}
+    <style>
+        /* General Styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: "times new roman";
+    background-color: #e0f7fa;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header Styles */
+header {
+    color: teal;
+    padding: 20px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+header .logo {
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    display: inline-block;
+    margin-left: 20px;
+    color: #00796b;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 20px;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color:teal;
+    text-decoration: none;
+    font-size: 20px;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color:#004d40;
+}
+
+/* Main Section Styles */
+.library-container {
+    padding: 120px 20px 60px; /* Adjusted padding to prevent overlap with the fixed header */
+    background-color: #e0f7fa;
+}
+
+.library-header {
+    text-align: center;
+    margin-bottom: 100px;
+}
+
+.library-header h1 {
+    font-size: 36px;
+    color: #00796b;
+    animation: slideDown 1s ease;
+}
+
+.library-header p {
+    font-size: 18px;
+    color: #666;
+    animation: fadeIn 1.5s ease;
+}
+
+/* Grid Styles */
+.library-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+.library-card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    flex: 1;
+    max-width: 300px;
+    min-width: 250px;
+}
+
+.library-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.library-card h3 {
+    font-size: 24px;
+    color: #00796b;
+    margin-bottom: 10px;
+}
+
+.library-card p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* Button Styles */
+.btn {
+    background-color: #00796b;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #004d40;
+}
+
+/* Footer Styles */
+footer {
+    color: teal;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 50px;
+}
+
+footer p {
+    margin: 0;
+    font-size: 14px;
+}
+
+footer ul.socials {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0;
+    display: flex;
+    justify-content: center;
+}
+
+footer ul.socials li {
+    margin: 0 10px;
+}
+
+footer ul.socials a {
+    color: teal;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+footer ul.socials a:hover {
+    color:#004d40;
+}
+
+/* Animations */
+@keyframes slideDown {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .library-header h1 {
+        font-size: 28px;
+    }
+
+    .library-header p {
+        font-size: 16px;
+    }
+
+    .library-card h3 {
+        font-size: 20px;
+    }
+
+    .library-card p {
+        font-size: 14px;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">Mental Health</a>
+                <ul>
+                    <li><a href="{% url 'index' %}">Home</a></li>
+                    <li><a href="{% url 'counseling' %}">Counseling</a></li>
+                    <li><a href="{% url 'StressManagement' %}">Crisis Supportand Resources</a></li>
+                    <li><a href="{% url 'community' %}">Community Engagement</a></li>
+                    <li><a href="{% url 'library' %}">Health Library</a></li>
+                    <li><a href="{% url 'feedback' %}">Feedback & Support</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Health Library Section -->
+    <main class="library-container">
+        <section class="library-header">
+            <h1>Health Library </h1>
+            <p></p>
+        </section>
+        <section class="library-grid">
+            <div class="library-card">
+                <h3>Anxiety</h3>
+                <p>Learn about anxiety and how to manage it.</p>
+                <button class="btn">Learn More</button>
+            </div>
+    
+            <div class="library-card">
+                <h3>Stress Management</h3>
+                <p>Tips to manage stress effectively.</p>
+                <button class="btn">Learn More</button>
+            </div>
+    
+            <div class="library-card">
+                <h3>Depression</h3>
+                <p>Understand the signs of depression and the ways to deal with it.</p>
+                <button class="btn">Learn More</button>
+            </div>
+    
+            <div class="library-card">
+                <h3>Mindfulness</h3>
+                <p>Practice mindfulness for better mental health.</p>
+                <button class="btn">Join Now</button>
+            </div>
+
+            <div class="library-card">
+                <h3>Sleep Disorders</h3>
+                <p>Information on dealing with sleep issues.</p>
+                <button class="btn">Learn More</button>
+            </div>
+    
+            <div class="library-card">
+                <h3>Eating Disorders</h3>
+                <p>Learn about various eating disorders and treatments.</p>
+                <button class="btn">Learn More</button>
+            </div>
+    
+            <div class="library-card">
+                <h3>Substance Abuse</h3>
+                <p>Understand the impact of substance abuse and ways to get help.</p>
+                <button class="btn">Learn More</button>
+            </div>
+    
+            <div class="library-card">
+                <h3>Relationships</h3>
+                <p>Guidance on maintaining healthy relationships.</p>
+                <button class="btn">Learn More</button>
+            </div>
+
+            <div class="library-card">
+                <h3>Work-Life Balance</h3>
+                <p>Tips on balancing work and personal life.</p>
+                <button class="btn">Learn More</button>
+            </div>
+    
+            <div class="library-card">
+                <h3>Grief and Loss</h3>
+                <p>Coping strategies for dealing with grief.</p>
+                <button class="btn">Learn More</button>
+            </div>
+        </section>
+    </main>
+               
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 Mental Health Platform. All rights reserved.</p>
+        <ul class="socials">
+            <li><a href="#">Twitter</a></li>
+            <li><a href="#">Facebook</a></li>
+            <li><a href="#">Instagram</a></li>
+        </ul>
+    </footer>
+    </body>
+    </html>
+
+
+

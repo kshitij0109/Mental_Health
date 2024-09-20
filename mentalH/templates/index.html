@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health Platform</title>
+    <link rel="stylesheet" type="text/css" href="static/css/home.css"> 
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">Mental Health</a>
+                <ul>
+                    <li><a href="{% url 'index' %}">Home</a></li>
+                    <li><a href="{% url 'counseling' %}">Counseling</a></li>
+                    <li><a href="{% url 'StressManagement' %}">Crisis Supportand Resources</a></li>
+                    <li><a href="{% url 'community' %}">Community Engagement</a></li>
+                    <li><a href="{% url 'library' %}">Health Library</a></li>
+                    <li><a href="{% url 'feedback' %}">Feedback & Support</a></li>
+                    <a href="{% url 'register' %}" class="btn btn-primary mx-2">Register </a>
+                    <a href="{% url 'login' %}" class="btn btn-primary mx-2">Login </a>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Welcome to Mental Health Platform</h1>
+            <p>Your mental well-being is our priority. Discover a space dedicated to supporting you with resources, counseling, and a caring community. Together, we can navigate the journey to mental wellness.</p>
+            <a href="{% url "counseling" %}" class="btn">Get Started</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="feature-box">
+            <h3>Counseling Services</h3>
+            <p>Personalized sessions with licensed professionals.</p>
+        </div>
+        <div class="feature-box">
+            <h3>Resource Library</h3>
+            <p>Access a wealth of self-help materials.</p>
+        </div>
+        <div class="feature-box">
+            <h3>Community Support</h3>
+            <p>Join our supportive and understanding community.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Mental Health Platform. All rights reserved.</p>
+            <ul class="socials">
+                <li><a href="#">Twitter</a></li>
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Instagram</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

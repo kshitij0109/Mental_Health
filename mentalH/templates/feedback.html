@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health Platform</title>
+    {% comment %} <link rel="stylesheet" href="static/css/feedback.css">  {% endcomment %}
+    <style>
+        /* Feedback Page Styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: "times new roman";
+    background: linear-gradient(lavender); 
+}
+
+/* Header Styling */
+header {
+    padding: 20px 0;
+}
+
+header .logo {
+    font-size: 24px;
+    color:#7b5eaa;
+    font-weight: bold;
+    padding-inline-start: 100px;
+}
+
+header ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+header ul li {
+    margin: 0 15px;
+}
+
+header ul li a {
+    text-decoration: none;
+    color:#7150bb;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+header ul li a:hover {
+    color: #d4a5ed; /* Lighter purple on hover */
+}
+
+/* Feedback Section */
+.section {
+    padding: 60px 20px;
+    background-color: #fff;
+}
+
+h1, h2 {
+    color:#7150bb;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    animation: fadeInDown 1s ease;
+}
+
+.feedback-form {
+    background:#ebe0f1;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feedback-form:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.feedback-form h3 {
+    color: #7b5eaa; /* Purple shade for sub-heading */
+}
+
+.feedback-form input[type="text"],
+.feedback-form input[type="email"],
+.feedback-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.feedback-form input[type="text"]:focus,
+.feedback-form input[type="email"]:focus,
+.feedback-form textarea:focus {
+    border-color: #7b5eaa;
+}
+
+.feedback-form button {
+    background-color: #7b5eaa;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.feedback-form button:hover {
+    background-color: #5a4088;
+}
+
+/* Footer Styling */
+footer {
+    color:#5a4088;
+    text-align: center;
+    padding: 20px 0;
+}
+
+footer p {
+    margin: 0;
+    font-size: 14px;
+}
+
+footer ul.socials {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0;
+    display: flex;
+    justify-content: center;
+}
+
+footer ul.socials li {
+    margin: 0 10px;
+}
+
+footer ul.socials a {
+    color:#5a4088;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+footer ul.socials a:hover {
+    color: #d4a5ed; /* Lighter purple on hover */
+}
+
+/* Animations */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    h2 {
+        font-size: 28px;
+    }
+
+    .feedback-form {
+        padding: 20px;
+    }
+
+    .feedback-form h3 {
+        font-size: 20px;
+    }
+
+    .feedback-form input,
+    .feedback-form textarea {
+        font-size: 14px;
+    }
+
+    .feedback-form button {
+        padding: 10px 15px;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">Mental Health</a>
+                <ul>
+                    <li><a href="{% url 'index' %}">Home</a></li>
+                    <li><a href="{% url 'counseling' %}">Counseling</a></li>
+                    <li><a href="{% url 'StressManagement' %}">Crisis Supportand Resources</a></li>
+                    <li><a href="{% url 'community' %}">Community Engagement</a></li>
+                    <li><a href="{% url 'library' %}">Health Library</a></li>
+                    <li><a href="{% url 'feedback' %}">Feedback & Support</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Feedback & Support Section -->
+    <section id="feedback" class="section">
+        <div class="container">
+            <h2>Feedback & Support</h2>
+            <div class="feedback-form">
+                <h3>We value your feedback</h3>
+                <form id="feedback-form">
+                    <label for="name">Your Name:</label>
+                    <input type="text" id="name" name="name">
+                    <label for="email">Your Email:</label>
+                    <input type="email" id="email" name="email">
+                    <label for="message">Your Message:</label>
+                    <textarea id="message" name="message"></textarea>
+                    <button type="submit" class="btn">Submit</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Mental Health Platform. All rights reserved.</p>
+            <ul class="socials">
+                <li><a href="#">Twitter</a></li>
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Instagram</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

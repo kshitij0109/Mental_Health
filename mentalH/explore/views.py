@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
-from .forms import BookSession, UserRegistrationForm
-from django.contrib.auth import login
+from .forms import BookSession, UserRegistrationForm, LoginForm
+from django.contrib.auth import login, authenticate
 from django.shortcuts import get_list_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from . import views
 
 
 
@@ -59,9 +60,25 @@ def register(request):
             user = form.save(commit=False)
             user.set_password(form.cleaned_data['password1'])
             user.save()
-            login(request, user)
-            return redirect('index')
+            login(request)
+            return redirect('counseling')
     else:
         form = UserRegistrationForm()
 
     return render(request, 'registration/register.html', {'form':form})
+
+
+def login_view(request):
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    return redirect ('counseling')
+    else:
+        form = LoginForm()
+    return render(request, 'login.html', {'form': form})

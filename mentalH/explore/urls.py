@@ -13,12 +13,12 @@ urlpatterns = [
     path('Depression/', views.Depression, name='Depression'),
     path('library/', views.library, name='library'),
     path('feedback/', views.feedback, name='feedback'),
-    path('login/', views.login, name='login'),
+    path('login/', views.login_view, name='login'),
     path('signup/', views.signup, name='signup'),
     path('StressManagement/', views.StressManagement, name='StressManagement'),
     path('counseling/success/', views.success, name='success_url'),
     path('register/', views.register, name='register'),
     path('accounts/', include('django.contrib.auth.urls')),
-    
-     
+    path('accounts/login/explore/counseling/', views.counseling, name='counseling'),
+    path('register/', views.register, name='register'),
 ]

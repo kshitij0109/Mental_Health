@@ -132,5 +132,7 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 LOGIN_URL = '/accounts/login'
 
-LOGIN_REDIRECT_URL = '/index/'
-LOGOUT_REDIRECT_URL = '/index/'
+LOGIN_REDIRECT_URL = 'explore/counseling'
+LOGOUT_REDIRECT_URL = 'explore/index/'
+
+TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]

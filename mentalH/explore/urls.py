@@ -1,6 +1,8 @@
 from django.urls import path, include
 from . import views
 from django.contrib.auth.urls import views as auth_views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     
@@ -17,5 +19,6 @@ urlpatterns = [
     path('counseling/success/', views.success, name='success_url'),
     path('register/', views.register, name='register'),
     path('accounts/', include('django.contrib.auth.urls')),
-
+    
+     
 ]

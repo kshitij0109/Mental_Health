@@ -1,6 +1,10 @@
 from django.shortcuts import render, redirect
 from .forms import BookSession, UserRegistrationForm
 from django.contrib.auth import login
+from django.shortcuts import get_list_or_404, redirect
+from django.contrib.auth.decorators import login_required
+
+
 
 
 def index(request):
@@ -11,9 +15,6 @@ def Anxity(request):
 
 def community(request):
     return render(request, 'community.html')
-
-# def counseling(request):
-#     return render(request, 'counseling.html')
 
 def Depression(request):
     return render(request, 'Depression.html')
@@ -36,11 +37,14 @@ def StressManagement(request):
 def success(request):
     return render(request, 'success.html')
 
+@login_required
 def counseling(request):
     if request.method == 'POST':
-        form = BookSession(request.POST)
+        form = BookSession(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            session = form.save(commit=False)
+            session.user = request.user
+            session.save()
             return redirect('success_url')
     else:
         form = BookSession()

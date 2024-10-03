@@ -21,4 +21,7 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/login/explore/counseling/', views.counseling, name='counseling'),
     path('register/', views.register, name='register'),
+    path('logout/', views.logout, name='logout'),
+    path('book-session/', views.book_session, name='book_session'),
+    path('queue/', views.queue_view, name='queue_view'),
 ]

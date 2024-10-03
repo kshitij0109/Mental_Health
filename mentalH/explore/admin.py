@@ -1,5 +1,7 @@
 from django.contrib import admin
-from .models import Session
+from .models import Session, CounselingQueue, CounselingSession
 
 admin.site.register(Session)
-# Register your models here.
+admin.site.register(CounselingSession)
+admin.site.register(CounselingQueue)
+

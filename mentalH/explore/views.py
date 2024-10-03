@@ -1,9 +1,11 @@
+from urllib import request
 from django.shortcuts import render, redirect
-from .forms import BookSession, UserRegistrationForm, LoginForm
+from .forms import BookSession, UserRegistrationForm, LoginForm, BookSessionForm
 from django.contrib.auth import login, authenticate
 from django.shortcuts import get_list_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from . import views
+from .models import CounselingQueue, CounselingSession
 
 
 
@@ -46,7 +48,7 @@ def counseling(request):
             session = form.save(commit=False)
             session.user = request.user
             session.save()
-            return redirect('success_url')
+            return redirect('queue_view')
     else:
         form = BookSession()
     return render(request, 'counseling.html', {'form': form})
@@ -82,3 +84,45 @@ def login_view(request):
     else:
         form = LoginForm()
     return render(request, 'login.html', {'form': form})
+
+
+def logout(request):
+    return render(request, 'registration/loggedOut.html')
+
+
+
+@login_required
+def book_session(request):
+    if request.method == 'POST':
+        form = BookSessionForm(request.POST)
+        if form.is_valid():
+            print("Form is valid")  # Check if the form is valid
+            print(request.POST)  # Inspect the form data
+            session_id = form.cleaned_data['session_id']
+            print(session_id)  # Inspect the session_id object
+            print(session_id.id)  # Inspect the session_id ID
+            queue = CounselingQueue.objects.create(user=request.user, session=session_id)
+            queue.position = CounselingQueue.objects.filter(session=session_id).count() + 1
+            queue.save()
+            request.session['session_id'] = session_id.id
+            request.session.save()
+            print("Session saved")  # Verify that the session is saved
+            return redirect('queue_view')
+    else:
+        form = BookSessionForm()
+    return render(request, 'book_session.html',{'form':form})
+
+@login_required
+def queue_view(request):
+    session_id = request.session.get('session_id')
+    if session_id is None:
+        # Handle the case where session_id is None
+        # For example, you could redirect the user to a page where they can select a session
+        return redirect('index')
+    user_position, created = CounselingQueue.objects.get_or_create(user=request.user, session_id=session_id)
+    if created:
+        user_position.position = CounselingQueue.objects.filter(session_id=session_id).count() + 1
+        user_position.save()
+    queue = CounselingQueue.objects.filter(session_id=session_id).order_by('position')
+    users_ahead = queue.filter(position__lt=user_position.position)
+    return render(request, 'queue.html', {'queue': queue, 'user_position': user_position.position, 'users_ahead': users_ahead})

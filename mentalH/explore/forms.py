@@ -1,5 +1,5 @@
 from django import forms
-from .models import Session
+from .models import Session, CounselingSession
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
@@ -30,3 +30,6 @@ class LoginForm(forms.Form):
             raise forms.ValidationError("Sorry, that login was invalid. Please try again.")
         return self.cleaned_data
 
+
+class BookSessionForm(forms.Form):
+    session_id = forms.ModelChoiceField(queryset=CounselingSession.objects.all())

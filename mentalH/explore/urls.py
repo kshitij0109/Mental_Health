@@ -24,4 +24,5 @@ urlpatterns = [
     path('logout/', views.logout, name='logout'),
     path('book-session/', views.book_session, name='book_session'),
     path('queue/', views.queue_view, name='queue_view'),
+    path('queue_list/', views.queue_list, name='queue_list'),
 ]

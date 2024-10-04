@@ -238,8 +238,12 @@ header ul li a:hover {
                 <form method="post">
                     {% csrf_token %}
                     {{ form.as_p }}
-                    <button type="submit">Book Session</button>
+                    <button type="submit">Book Session</button> 
                 </form>
+                <br>
+                <a href="{% url 'queue_list' %}">
+                    <button style="background-color: #fff;: #fff;"> All sessions</button>
+                </a>
             </div>
             <div class="live-chat">
                 <h3>Live Chat with Counselors</h3>

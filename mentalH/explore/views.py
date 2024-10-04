@@ -5,7 +5,7 @@ from django.contrib.auth import login, authenticate
 from django.shortcuts import get_list_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from . import views
-from .models import CounselingQueue, CounselingSession
+from .models import CounselingQueue, CounselingSession, Session
 
 
 
@@ -40,6 +40,10 @@ def StressManagement(request):
 def success(request):
     return render(request, 'success.html')
 
+def queue_list(request):
+    queues = Session.objects.all().order_by('-Date')
+    return render(request, 'Session_list.html', {'queues': queues})
+
 @login_required
 def counseling(request):
     if request.method == 'POST':
@@ -48,7 +52,8 @@ def counseling(request):
             session = form.save(commit=False)
             session.user = request.user
             session.save()
-            return redirect('queue_view')
+            request.session['session_id'] = session.id
+            return redirect('queue_list')
     else:
         form = BookSession()
     return render(request, 'counseling.html', {'form': form})
@@ -116,8 +121,10 @@ def book_session(request):
 def queue_view(request):
     session_id = request.session.get('session_id')
     if session_id is None:
-        # Handle the case where session_id is None
-        # For example, you could redirect the user to a page where they can select a session
+        return redirect('index')
+    session = CounselingSession.objects.filter(id=session_id).first()
+    if session is None:
+        # Handle the case where the session_id doesn't exist
         return redirect('index')
     user_position, created = CounselingQueue.objects.get_or_create(user=request.user, session_id=session_id)
     if created:

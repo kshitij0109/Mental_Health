@@ -1,0 +1,23 @@
+
+
+{% block content %}
+  <h1>Session Statistics</h1>
+  <table>
+    <tr>
+      <th>Username</th>
+      <th>Number of Sessions</th>
+    </tr>
+    {% for username, num_sessions in session_stats.items %}
+    <tr>
+      <td>{{ username }}</td>
+      <td>
+        {% if num_sessions > 0 %}
+          {{ num_sessions }}
+        {% else %}
+          No sessions booked
+        {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock %}

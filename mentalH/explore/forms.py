@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate
 class BookSession(forms.ModelForm):
     class Meta:
         model = Session
-        fields = ('Name', 'email', 'phone_number', 'Date', 'Time')
+        fields = ('Name', 'email', 'phone_number', 'Date', 'Time',)
 
 
 class UserRegistrationForm(UserCreationForm):

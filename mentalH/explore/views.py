@@ -6,6 +6,9 @@ from django.shortcuts import get_list_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from . import views
 from .models import CounselingQueue, CounselingSession, Session
+from django.contrib.auth.models import User
+from django.db.models import Count
+from django.db.models.functions import TruncDay
 
 
 
@@ -42,7 +45,7 @@ def success(request):
 
 def queue_list(request):
     queues = Session.objects.all().order_by('-Date')
-    return render(request, 'Session_list.html', {'queues': queues})
+    return render(request, 'queue_list.html', {'queues': queues})
 
 @login_required
 def counseling(request):
@@ -101,11 +104,11 @@ def book_session(request):
     if request.method == 'POST':
         form = BookSessionForm(request.POST)
         if form.is_valid():
-            print("Form is valid")  # Check if the form is valid
-            print(request.POST)  # Inspect the form data
+            print("Form is valid")  
+            print(request.POST)
             session_id = form.cleaned_data['session_id']
-            print(session_id)  # Inspect the session_id object
-            print(session_id.id)  # Inspect the session_id ID
+            print(session_id)  
+            print(session_id.id)  
             queue = CounselingQueue.objects.create(user=request.user, session=session_id)
             queue.position = CounselingQueue.objects.filter(session=session_id).count() + 1
             queue.save()
@@ -124,7 +127,7 @@ def queue_view(request):
         return redirect('index')
     session = CounselingSession.objects.filter(id=session_id).first()
     if session is None:
-        # Handle the case where the session_id doesn't exist
+        
         return redirect('index')
     user_position, created = CounselingQueue.objects.get_or_create(user=request.user, session_id=session_id)
     if created:
@@ -133,3 +136,34 @@ def queue_view(request):
     queue = CounselingQueue.objects.filter(session_id=session_id).order_by('position')
     users_ahead = queue.filter(position__lt=user_position.position)
     return render(request, 'queue.html', {'queue': queue, 'user_position': user_position.position, 'users_ahead': users_ahead})
+
+
+
+def session_statistics(request):
+    session_stats = {}
+    for user in User.objects.all():
+        num_sessions = CounselingQueue.objects.filter(user=user, status='completed').count()
+        session_stats[user.username] = num_sessions
+    return render(request, 'session_stats.html', {'session_stats': session_stats})
+
+
+def user_registration_stats(request):
+    session_dates = Session.objects.annotate(date=TruncDay('Date')).values('date').annotate(count=Count('id')).order_by('date')
+    return render(request, 'user_registration_stats.html', {'session_dates': session_dates})
+
+
+@login_required
+def account_view(request):
+    user = request.user
+    booked_sessions = Session.objects.filter(user=user)
+    total_sessions = booked_sessions.count()
+    #active_subscriptions = user.subscriptions.filter(active=True).count()
+
+    context = {
+        'user': user,
+        'booked_sessions': booked_sessions,
+        'total_sessions': total_sessions,
+        #'active_subscriptions': active_subscriptions,
+    }
+
+    return render(request, 'account.html', context)

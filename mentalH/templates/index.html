@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="static/css/home.css"> 
 </head>
 <body>
-   
+   {% block content %}
     <!-- Header -->
     <header id="header">
         <div class="container">
@@ -24,12 +24,17 @@
                     <li><a href="{% url 'community' %}">Community Engagement</a></li>
                     <li><a href="{% url 'library' %}">Health Library</a></li>
                     <li><a href="{% url 'feedback' %}">Feedback & Support</a></li>
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'account' %}"">account</a></li>
+                    {% else %}
                    <li> <a href="{% url 'register' %}" class="btn btn-primary mx-2">Register </a></li>
                     <li><a href="{% url 'login' %}" class="btn btn-primary mx-2">Login </a></li>
+                    {% endif %}
                 </ul>
             </nav>
         </div>
     </header>
+    {% endblock %}
     
 
     <!-- Hero Section -->

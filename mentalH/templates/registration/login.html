@@ -1,7 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Login Form Container */
+        .login-form-container {
+          background-color: #f7f7f7;
+          padding: 20px;
+          border: 1px solid #ddd;
+          border-radius: 10px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+          width: 300px;
+          margin: 40px auto;
+        }
+        
+        /* Login Form Header */
+        .login-form-header {
+          background-color: #333;
+          color: #fff;
+          padding: 10px;
+          border-bottom: 1px solid #ddd;
+          border-radius: 10px 10px 0 0;
+        }
+        
+        .login-form-header h2 {
+          margin: 0;
+          font-weight: bold;
+          font-size: 18px;
+        }
+        
+        /* Login Form Fields */
+        .login-form-fields {
+          padding: 20px;
+        }
+        
+        .login-form-fields label {
+          display: block;
+          margin-bottom: 10px;
+          font-weight: bold;
+          font-size: 16px;
+        }
+        
+        .login-form-fields input[type="text"], .login-form-fields input[type="password"] {
+          width: 100%;
+          padding: 10px;
+          margin-bottom: 20px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+        }
+        
+        .login-form-fields input[type="submit"] {
+          background-color: #4caf50;
+          color: #fff;
+          padding: 10px 20px;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+        }
+        
+        .login-form-fields input[type="submit"]:hover {
+          background-color: #333;
+        }
+        
+        /* Login Form Footer */
+        .login-form-footer {
+          background-color: #f7f7f7;
+          padding: 10px;
+          border-top: 1px solid #ddd;
+          border-radius: 0 0 10px 10px;
+          text-align: center;
+        }
+        
+        .login-form-footer a {
+          color: #4caf50;
+          text-decoration: none;
+        }
+        
+        .login-form-footer a:hover {
+          color: #333;
+        }
+    </style>
+</head>
+<body>
+    
+
 <h2>Login form </h2>
 <form method="post">
 {% csrf_token %}
 {{form.as_p}} 
+
 
 <button class="btn btn-primary">login</button>
 
@@ -11,3 +100,6 @@
     register here 
 </a>
 </p>
+
+</body>
+</html>

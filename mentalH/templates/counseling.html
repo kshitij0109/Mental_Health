@@ -216,16 +216,16 @@ header ul li a:hover {
                 <ul>
                     <li><a href="{% url 'index' %}">Home</a></li>
                     <li><a href="{% url 'counseling' %}">Counseling</a></li>
-                    <li><a href="{% url 'StressManagement' %}">Crisis Supportand Resources</a></li>
+                  
                     <li><a href="{% url 'community' %}">Community Engagement</a></li>
                     <li><a href="{% url 'library' %}">Health Library</a></li>
                     <li><a href="{% url 'feedback' %}">Feedback & Support</a></li>
+                   
                     {% if user.is_authenticated %}
-                    <form method="post" action="{% url 'logout' %}">
+                   
                     {% csrf_token %}
-                    <button class="btn btn-danger" type="submit">
-                    Logout
-                    </button>
+                    <li><a href="{% url 'logout' %}">logout</a></li>
+                  
                     </form>
                     {% endif %}
                 </ul>

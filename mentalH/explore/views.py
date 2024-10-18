@@ -155,15 +155,13 @@ def user_registration_stats(request):
 @login_required
 def account_view(request):
     user = request.user
-    booked_sessions = Session.objects.filter(user=user)
-    total_sessions = booked_sessions.count()
-    #active_subscriptions = user.subscriptions.filter(active=True).count()
-
+    sessions_booked = Session.objects.filter(user=user)
+    total_sessions = sessions_booked.count()
+    
     context = {
         'user': user,
-        'booked_sessions': booked_sessions,
+        'booked_sessions': sessions_booked,
         'total_sessions': total_sessions,
-        #'active_subscriptions': active_subscriptions,
     }
 
-    return render(request, 'account.html', context)
+    return render(request, 'account.html', {'user': user, 'sessions_booked': sessions_booked})
